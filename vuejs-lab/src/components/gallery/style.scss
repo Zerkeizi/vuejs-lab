@@ -1,0 +1,33 @@
+.picture__title {
+    text-align: center;
+}
+
+.picture__frame {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0px 5px;
+    position: relative;
+
+    img {
+        width: 230px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;  
+    }   
+} 
+
+.picture-fade-enter-active, .picture-fade-leave-active {
+    transition: all .2s;
+    max-height: 500px;
+    max-width: 500px;
+
+}
+
+.picture-fade-enter, .picture-fade-leave-to {
+    opacity: 0;
+    // max-width: 0px;
+    max-height: 0px;
+}
