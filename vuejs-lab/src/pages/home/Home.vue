@@ -13,7 +13,7 @@
       <Button 
         label="remover"
         type="button"
-        class="button--danger"
+        btnStyle="danger"
         :confirmation="false"
         @buttonCustomClick="remove(picture)"
       />

@@ -1,7 +1,7 @@
 <template>
   <button 
     @click="action"
-    class="button"
+    :class="'button button--'+ btnStyle"
     :type="type"
   >
     {{ label }}
@@ -12,11 +12,12 @@ export default {
   props: {
     type: String,
     label: String,
+    btnStyle: String,
     confirmation: Boolean,
   },
   methods: {
     action() {
-      console.log(typeof this.confirmation)
+      console.log(this.btnStyle)
       if (this.confirmation) {
         if (confirm('Você tem certeza?')) {
           this.$emit('buttonCustomClick')
@@ -49,6 +50,10 @@ export default {
 
   &--danger {
     background-color: firebrick;
+
+     &:hover {
+      background-color: #6b1313;
+    }
   }
 }
 </style>
