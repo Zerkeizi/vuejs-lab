@@ -2,7 +2,7 @@
 
   <div class="module__wrapper">
     <h1 class="title">{{ title }}</h1>  
-
+     <router-link to="/register">Go to Register</router-link>
     <input class="filter" type="search" @input="filter = $event.target.value" placeholder="Pesquise">
     <ul class="picture__wrapper">
       <li v-for="picture of filteredGallery">
@@ -10,21 +10,29 @@
       <Frame :title="picture.titulo">
         <Picture :url="picture.url" :titulo="picture.titulo"/>
       </Frame>
+      <Button 
+        label="remover"
+        type="button"
+        class="button--danger"
+        :confirmation="false"
+        @buttonCustomClick="remove(picture)"
+      />
 
      </li>
     </ul>
 
   </div>
 </template>
-
-
 <script>
   import Frame from '../../components/gallery/Frame';
   import Picture from '../../components/picture/Picture';
+  import Button from '../../components/button/Button';
+
   export default {
     components: {
       Frame: Frame,
-      Picture: Picture
+      Picture: Picture,
+      Button: Button
     },
   
     data () {
@@ -44,13 +52,16 @@
         }
       }
     },
+    methods: {
+      remove(picture) {
+          alert(`A foto "${picture.titulo}" foi removida.`);
+      }
+    },
     created() {
 
       this.$http.get('http://localhost:3000/v1/fotos')
         .then(res => res.json())
         .then(fotos => this.pictures = fotos, err => console.log(err));
-        // .then(res => console.log(res))
-
     }
   }
 </script>
@@ -85,10 +96,27 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: blue;
+        background-color: rgba(71, 137, 255, 1);
         border: 1px solid;
         padding: 10px 30px;
         max-width: 150px;
+        position: relative;
+
+        button {
+              display: none;
+              bottom: 30px;
+              position: absolute;
+            }
+            &:hover {
+              background-color: rgba(71, 137, 255, .5);
+              h2, img {
+                opacity: .5;
+              }
+
+              button {
+                display: block;
+              }
+            }
       }
     }
   }
