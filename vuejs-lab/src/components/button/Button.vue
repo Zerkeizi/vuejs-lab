@@ -10,8 +10,14 @@
 <script>
 export default {
   props: {
-    type: String,
-    label: String,
+    type: {
+      required: true,
+      type: String,
+    },
+    label: {
+      required: true,
+      type: String,
+    },
     btnStyle: String,
     confirmation: Boolean,
   },
